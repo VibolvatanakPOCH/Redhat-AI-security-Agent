@@ -1,0 +1,18 @@
+# Dockerfile for the Flask Backend
+FROM python:3.11-slim
+
+# Set the working directory
+WORKDIR /app/backend
+
+# Copy the requirements file and install dependencies
+COPY backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
+COPY backend/src /app/backend/src
+
+# Expose the port the app runs on
+EXPOSE 5000
+
+# Run the application
+CMD ["python", "src/main.py"]
